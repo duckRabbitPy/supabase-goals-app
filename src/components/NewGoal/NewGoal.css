@@ -1,0 +1,23 @@
+.new-goal {
+  margin: 2rem;
+  text-align: center;
+}
+
+.addBtn {
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+.addBtn:hover {
+  background-color: rgb(139, 166, 218);
+}
+
+label {
+  margin: 1rem;
+}
+
+input {
+  background-color: rgb(230, 230, 230);
+  min-width: 20vw;
+  min-height: fit-content;
+}

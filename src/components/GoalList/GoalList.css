@@ -1,0 +1,69 @@
+.goal-list {
+  list-style: none;
+  margin: 2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.goal-list li {
+  border-radius: 10px;
+  background-color: rgb(230, 230, 230);
+  box-shadow: 0.25px 0.5px;
+  text-align: left;
+  font-size: medium;
+  margin: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  min-width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-items: start;
+}
+
+.goal-list li:hover {
+  border-color: blueviolet;
+}
+
+.container {
+  display: flex;
+  justify-items: right;
+}
+
+.controls {
+  font-size: small;
+  margin: 0.5vw;
+}
+
+#remove-btn:hover {
+  background-color: rgb(235, 175, 175);
+}
+
+#edit-btn:hover {
+  background-color: rgb(175, 213, 235);
+}
+
+#bump-btn:hover {
+  background-color: plum;
+}
+
+#complete-btn:hover {
+  background-color: rgb(209, 250, 111);
+}
+
+#priority {
+  background-color: rgb(190, 237, 176);
+}
+
+@media only screen and (max-width: 767px) {
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #bump-btn {
+    height: 50px;
+    width: 100px;
+  }
+}

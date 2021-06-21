@@ -1,0 +1,29 @@
+.edit-container {
+  display: flex;
+  flex-direction: row;
+}
+
+textarea {
+  margin-top: 2rem;
+  width: 80vw;
+  height: 20vw;
+  display: flex;
+  margin-left: 10vw;
+}
+
+.editBtn {
+  font-size: larger;
+  margin-top: 2vw;
+  margin-left: 80vw;
+}
+
+.editBtn:hover {
+  background-color: rgb(0, 255, 174);
+}
+
+@media only screen and (max-width: 767px) {
+  .editBtn {
+    margin-top: 1vw;
+    margin-left: 80vw;
+  }
+}
