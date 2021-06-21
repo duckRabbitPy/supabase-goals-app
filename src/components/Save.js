@@ -5,7 +5,11 @@ const Save = (props) => {
     props.onSavedChanges();
   }
   return (
-    <button className="get-changes" onClick={userSaved}>
+    <button
+      className={!props.retrieve ? "disabled-btn" : "get-changes"}
+      onClick={userSaved}
+      disabled={!props.retrieve}
+    >
       Save changes
     </button>
   );

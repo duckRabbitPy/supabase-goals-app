@@ -27,6 +27,7 @@ export default function Auth() {
         </p>
         <div>
           <input
+            autoComplete="on"
             className="inputField"
             type="email"
             placeholder="Your email"

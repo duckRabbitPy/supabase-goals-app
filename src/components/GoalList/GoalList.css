@@ -26,11 +26,6 @@
   border-color: blueviolet;
 }
 
-.container {
-  display: flex;
-  justify-items: right;
-}
-
 .controls {
   font-size: small;
   margin: 0.5vw;

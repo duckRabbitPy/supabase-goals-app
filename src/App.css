@@ -59,14 +59,18 @@
   flex-direction: row-reverse;
 }
 
-.save-changes {
-  margin: 0.5rem;
-}
-
 .get-changes {
   margin: 0.5rem;
 }
 
+.get-changes:hover {
+  background-color: rgb(138, 199, 77);
+}
+
 .edit-input {
   color: black;
+}
+
+.disabled-btn {
+  background-color: darkgray;
 }

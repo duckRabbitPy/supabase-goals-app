@@ -8,7 +8,11 @@ import Save from "./components/Save";
 import { supabase } from "./supabaseClient";
 
 const TodoApp = () => {
-  const [courseGoals, setcourseGoals] = useState([{ id: "jdk", msg: "hello" }]);
+  const [courseGoals, setcourseGoals] = useState([
+    { id: "jdk", msg: "Let's get started" },
+  ]);
+
+  const [userDataIsIn, setUserDataIsIn] = useState(false);
 
   const [editMode, setEditMode] = useState(false);
 
@@ -27,14 +31,17 @@ const TodoApp = () => {
       }
       const retrievedState = data[0].tasksDB;
       setcourseGoals(retrievedState);
+      setUserDataIsIn(true);
     } catch (error) {
       alert(error.message);
+    } finally {
     }
   }
 
   const addNewGoalHandler = (newGoal) => {
     if (newGoal.text) {
       setcourseGoals((courseGoals) => {
+        setUserDataIsIn(true);
         return courseGoals.concat(newGoal);
       });
     } else return null;
@@ -95,17 +102,22 @@ const TodoApp = () => {
 
   async function UpdateDBHandler() {
     try {
+      const user = await supabase.auth.user();
+
       const updates = {
+        id: user.id,
+        updated_at: new Date(),
         tasksDB: courseGoals,
       };
 
-      let { error } = await supabase.from("profiles").update(updates, {
+      let { error } = await supabase.from("profiles").upsert(updates, {
         returning: "minimal", // Don't return the value after inserting
       });
 
       if (error) {
         throw error;
       }
+      alert("Goals saved");
     } catch (error) {
       alert(error.message);
     }
@@ -119,8 +131,17 @@ const TodoApp = () => {
     return (
       <div className="course-goals">
         <div className="data-requests">
-          <Save goals={courseGoals} onSavedChanges={UpdateDBHandler} />
-          <button className="get-changes" onClick={collectDBState}>
+          <Save
+            disabled={userDataIsIn}
+            retrieve={userDataIsIn}
+            goals={courseGoals}
+            onSavedChanges={UpdateDBHandler}
+          />
+          <button
+            disabled={userDataIsIn}
+            className={userDataIsIn ? "disabled-btn" : "get-changes"}
+            onClick={collectDBState}
+          >
             Retrieve
           </button>
         </div>

@@ -10,7 +10,7 @@ const MarkedDone = (props) => {
         <h4 className="recentHeader">Recent activity</h4>
         {mostRecent.map((item) => {
           return (
-            <li key={item.id}>
+            <li className="marked-text" key={item.id}>
               {"✓  "}
               {item.text}
             </li>
