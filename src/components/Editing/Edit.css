@@ -5,16 +5,18 @@
 
 textarea {
   margin-top: 2rem;
-  width: 80vw;
+  width: 70vw;
   height: 20vw;
   display: flex;
   margin-left: 10vw;
+  margin-right: 10vw;
 }
 
 .editBtn {
-  font-size: larger;
+  font-size: large;
   margin-top: 2vw;
-  margin-left: 80vw;
+  width: fit-content;
+  margin-right: 70vw;
 }
 
 .editBtn:hover {

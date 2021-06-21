@@ -4,14 +4,11 @@ import NewGoal from "./components/NewGoal/NewGoal";
 import "./App.css";
 import EditComponent from "./components/Editing/Edit";
 import MarkedDone from "./components/MarkedDone/MarkedDone";
+import Save from "./components/Save";
+import { supabase } from "./supabaseClient";
 
 const TodoApp = () => {
-  const [courseGoals, setcourseGoals] = useState([
-    { id: "cg1", text: "Finish the Course" },
-    { id: "cg2", text: "Learn all about the Course Main Topic" },
-    { id: "cg3", text: "Help other students in the Course Q&A" },
-    { id: "cg4", text: "Build a complex fully featured application" },
-  ]);
+  const [courseGoals, setcourseGoals] = useState([{ id: "jdk", msg: "hello" }]);
 
   const [editMode, setEditMode] = useState(false);
 
@@ -20,6 +17,20 @@ const TodoApp = () => {
   const [editId, setEditID] = useState(null);
 
   const [markedItems, setMarkedItem] = useState([]);
+
+  async function collectDBState() {
+    try {
+      let { data, error } = await supabase.from("profiles").select("tasksDB");
+
+      if (error) {
+        throw error;
+      }
+      const retrievedState = data[0].tasksDB;
+      setcourseGoals(retrievedState);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 
   const addNewGoalHandler = (newGoal) => {
     if (newGoal.text) {
@@ -82,25 +93,45 @@ const TodoApp = () => {
     }
   };
 
+  async function UpdateDBHandler() {
+    try {
+      const updates = {
+        tasksDB: courseGoals,
+      };
+
+      let { error } = await supabase.from("profiles").update(updates, {
+        returning: "minimal", // Don't return the value after inserting
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   if (editMode)
     return (
       <EditComponent value={textForEditing} onNewText={changeTextHandler} />
     );
+  if (courseGoals !== [])
+    return (
+      <div className="course-goals">
+        <Save goals={courseGoals} onSavedChanges={UpdateDBHandler} />
+        <NewGoal onAddGoal={addNewGoalHandler} />
 
-  return (
-    <div className="course-goals">
-      <NewGoal onAddGoal={addNewGoalHandler} />
-
-      <GoalList
-        onRemoveGoal={removeGoalHandler}
-        goals={courseGoals}
-        onEdit={editGoalHandler}
-        onBump={bumpItemHandler}
-        onComplete={completeGoalHandler}
-      />
-      <MarkedDone complete={markedItems} />
-    </div>
-  );
+        <GoalList
+          onRemoveGoal={removeGoalHandler}
+          goals={courseGoals}
+          onEdit={editGoalHandler}
+          onBump={bumpItemHandler}
+          onComplete={completeGoalHandler}
+        />
+        <MarkedDone complete={markedItems} />
+        <button onClick={collectDBState}>Retrieve</button>
+      </div>
+    );
 };
 
 export default TodoApp;
