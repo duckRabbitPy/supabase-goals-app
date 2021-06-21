@@ -118,7 +118,12 @@ const TodoApp = () => {
   if (courseGoals !== [])
     return (
       <div className="course-goals">
-        <Save goals={courseGoals} onSavedChanges={UpdateDBHandler} />
+        <div className="data-requests">
+          <Save goals={courseGoals} onSavedChanges={UpdateDBHandler} />
+          <button className="get-changes" onClick={collectDBState}>
+            Retrieve
+          </button>
+        </div>
         <NewGoal onAddGoal={addNewGoalHandler} />
 
         <GoalList
@@ -129,7 +134,6 @@ const TodoApp = () => {
           onComplete={completeGoalHandler}
         />
         <MarkedDone complete={markedItems} />
-        <button onClick={collectDBState}>Retrieve</button>
       </div>
     );
 };

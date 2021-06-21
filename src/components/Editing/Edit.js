@@ -14,7 +14,11 @@ const EditComponent = (props) => {
   return (
     <>
       <div className="edit-container">
-        <textarea defaultValue={props.value} onChange={updateText}></textarea>
+        <textarea
+          className="edit-input"
+          defaultValue={props.value}
+          onChange={updateText}
+        ></textarea>
       </div>
       <button className="editBtn" onClick={updateGoalText}>
         Save

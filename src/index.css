@@ -3,10 +3,11 @@ body {
   --custom-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   --custom-bg-color: #398381;
-  --custom-panel-color: rgb(55, 54, 54);
+  --custom-panel-color: rgb(51, 85, 91);
   --custom-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.8);
   --custom-color: #fff;
   --custom-color-brand: #24b47e;
+  /* email text */
   --custom-color-secondary: rgb(12, 12, 12);
   --custom-border: 1px solid #333;
   --custom-border-radius: 5px;
