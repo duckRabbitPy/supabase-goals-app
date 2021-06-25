@@ -19,7 +19,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="row flex flex-center">
+    <form className="row flex flex-center">
       <div className="col-6 form-widget">
         <h1 className="header">React Life Planner</h1>
         <p className="description">
@@ -29,6 +29,7 @@ export default function Auth() {
           <input
             autoComplete="email"
             className="inputField"
+            name="email"
             type="email"
             placeholder="Your email"
             value={email}
@@ -48,6 +49,6 @@ export default function Auth() {
           </button>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
