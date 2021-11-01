@@ -1,4 +1,4 @@
-# Getting Started with React App Goals
+# Supabase goals app
 
 Supabase goals is an app built with a _React_ frontend and _Supabase_ API backend that can be used to store personal goals, notes and to-dos securely.
 
